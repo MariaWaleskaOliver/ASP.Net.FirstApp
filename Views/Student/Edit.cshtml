@@ -1,0 +1,62 @@
+﻿<!-- 
+//Maria Waleska Marinho de Oliveira 
+//Student Number : 8751749
+//email: mmarinhodeoliver1749@conestogac.on.ca
+//PROG2230  Sec 4
+
+Here is the Edit page :
+
+-->
+@using MOAssignment1.Entities
+@model StudentViewModel
+
+@{
+    ViewData["Title"] = "Edit Student";
+}
+
+<form asp-controller="Student" asp-action="Edit" method="post" enctype="application/x-www-form-urlencoded">
+    <div class="text-danger" asp-validation-summary="All"></div>
+
+    <div class="form-group">
+        <label asp-for="ActiveStudent.FirstName"> Student First Name</label>
+        <input type="text" asp-for="ActiveStudent.FirstName" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ActiveStudent.dataOfBirth"> Date of birth</label>
+        <input type="text" asp-for="ActiveStudent.dataOfBirth" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ActiveStudent.LastName"> Student Last Name</label>
+        <input type="text" asp-for="ActiveStudent.LastName" class="form-control" />
+    </div>
+  
+
+    <div class="form-group">
+        <label asp-for="ActiveStudent.GPA"> GPA</label>
+        <input type="text" asp-for="ActiveStudent.GPA" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ActiveStudent.GPAScale"> GPA Scale</label>
+        <input type="text" asp-for="ActiveStudent.GPAScale" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ActiveStudent.StudentProgramId"> Program</label>
+        <select asp-for="ActiveStudent.StudentProgramId" class="form-control">
+            <option value="">Select a Program</option>
+           @foreach(StudentProgram s in Model.Programs)
+            {
+                <option value="@s.StudentProgramId">@s.Name</option>     
+            }
+        </select>
+    </div>
+     <input type="hidden" asp-for="ActiveStudent.StudentId" />
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-controller="Students" asp-action="List" class="btn btn-primary">Cancel</a>
+
+</form>
+

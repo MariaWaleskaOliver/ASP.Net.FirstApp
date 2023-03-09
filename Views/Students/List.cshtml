@@ -1,0 +1,45 @@
+﻿<!-- 
+//Maria Waleska Marinho de Oliveira 
+//Student Number : 8751749
+//email: mmarinhodeoliver1749@conestogac.on.ca
+//PROG2230  Sec 4
+
+Here is Where we display all students
+
+-->
+@using MOAssignment1.Entities
+@model List<Student>
+
+@{
+    ViewData["Title"] = "All Students";
+}
+<a asp-controller="Students" asp-action="Create">Add new Student</a>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Last Name</th>
+            <th>First Name</th>
+            <th>Age</th>
+            <th>GPA</th>
+            <th>GPA Scale</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var student in Model)
+        {
+            <tr>
+                <td>@student.LastName</td>
+                <td>@student.FirstName</td>
+                <td>@student.dataOfBirth</td>
+                <td>@student.GPA</td>
+                 <td>@student.GPAScale</td>
+                <td>
+                    <a asp-controller="Student" asp-action="Edit" asp-route-id="@student.StudentId">Edit</a>
+                    <span class="mx-1">|</span>
+                    <a asp-controller="Student" asp-action="Delete" asp-route-id="@student.StudentId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
